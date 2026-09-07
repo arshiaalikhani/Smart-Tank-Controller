@@ -1,0 +1,10 @@
+# depslib dependency file v1.0
+1788774163 source:c:\users\p-g\desktop\smart-tank-controller\smart-tank-controller\src\pump.cpp
+
+1788774163 source:c:\users\p-g\desktop\smart-tank-controller\smart-tank-controller\src\tank.cpp
+
+1788776459 source:c:\users\p-g\desktop\smart-tank-controller\smart-tank-controller\src\main.cpp
+	<iostream>
+	<string>
+	<cstdlib>
+
