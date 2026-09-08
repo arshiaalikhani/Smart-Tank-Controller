@@ -2,7 +2,8 @@
 #include <string>
 #include <cstdlib>   // For EXIT_FAILURE
 #include "utils.h"
-
+#include "tank.h"
+#include "pump.h"
 /**
  * Removes leading and trailing whitespace characters from a string.
  * @param str The input string to trim.
@@ -21,14 +22,23 @@ std::string trim(const std::string& str) {
 }
 
 int main() {
+    tank tank;
+    pump pump;
     std::string command;   // Stores the raw user input
 
     // Infinite loop to keep the menu running until the user chooses to exit
     while (true) {
         // Display the main menu
         std::cout << "========== TANK CONTROLLER ==========" << std::endl;
-        std::cout << "Water Level: 65%" << std::endl;
-        std::cout << "Pump: OFF" << std::endl;
+        std::cout << "Water Level:"
+                  <<  tank.getLevel()
+                  << "%" <<std::endl;
+        std::cout << "Pump:";
+                  if(pump.isrunning())
+                    std::cout<<"ON";
+                  else
+                    std::cout<<"OFF";
+                  std::cout<<std::endl;
         std::cout << "Alarm: OFF" << std::endl;
         std::cout << "1. Add Water" << std::endl;
         std::cout << "2. Remove Water" << std::endl;
@@ -64,7 +74,7 @@ int main() {
 
         // Step 3: If the input is not exactly one of the allowed values, terminate
         if (!isValid) {
-            std::cerr << "⛔ Security error: Input '" << cleaned << "' is invalid. System access revoked." << std::endl;
+            std::cerr << "Security error: Input '" << cleaned << "' is invalid. System access revoked." << std::endl;
             std::exit(EXIT_FAILURE);
         }
 
@@ -80,48 +90,49 @@ int main() {
 
             case 1:
                 clearScreen();
-                std::cout << "✅ Adding water... (simulated)" << std::endl;
+                std::cout << "Adding water... (simulated)" << std::endl;
                 // Insert actual logic for adding water here
                 break;
 
             case 2:
                 clearScreen();
-                std::cout << "✅ Removing water... (simulated)" << std::endl;
+                std::cout << "Removing water... (simulated)" << std::endl;
                 // Insert actual logic for removing water here
                 break;
 
             case 3:
                 clearScreen();
-                std::cout << "✅ Starting the pump... (simulated)" << std::endl;
+                std::cout << "Starting the pump... (simulated)" << std::endl;
                 // Insert actual pump start logic here
                 break;
 
             case 4:
                 clearScreen();
-                std::cout << "✅ Stopping the pump... (simulated)" << std::endl;
+                std::cout << "Stopping the pump... (simulated)" << std::endl;
                 // Insert actual pump stop logic here
                 break;
 
             case 5:
                 clearScreen();
-                std::cout << "🚨 Emergency stop activated! All systems halted." << std::endl;
+                std::cout << "Emergency stop activated! All systems halted." << std::endl;
                 // Insert actual emergency shutdown logic here
                 break;
 
             case 6:
                 clearScreen();
-                std::cout << "📊 Showing current status... (simulated)" << std::endl;
+                std::cout << "Showing current status... (simulated)" << std::endl;
                 // Insert actual status display logic here
                 break;
 
             default:
                 // This case should never occur due to the validation above.
                 // It is kept as a safety net against unexpected states.
-                std::cerr << "⚠️ Unexpected critical error! Invalid case entered the switch." << std::endl;
+                std::cerr << "Unexpected critical error! Invalid case entered the switch." << std::endl;
                 std::exit(EXIT_FAILURE);
         }
 
         // Print a separator for better readability before looping again
+
         std::cout << "\n------------------------------------\n" << std::endl;
     }
 
